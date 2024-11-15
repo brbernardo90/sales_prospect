@@ -10,7 +10,7 @@ app = FastAPI()
 # Configure CORS settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://67379fc7568f313ab68bd4cf--sales-prospect.netlify.app/"],  # List the front-end origins allowed to access the API
+    allow_origins=["https://67379fc7568f313ab68bd4cf--sales-prospect.netlify.app"],  # List the front-end origins allowed to access the API
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
