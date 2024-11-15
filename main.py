@@ -10,7 +10,7 @@ app = FastAPI()
 # Configure CORS settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://sales-prospect.netlify.app"],  # List the front-end origins allowed to access the API
+    allow_origins=["https://sales-prospect.netlify.app", "http://localhost:3000"],  # List the front-end origins allowed to access the API
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
@@ -35,4 +35,5 @@ async def extract_info(request: SalesRequest):
         response = llm_generate_response(title, body)
         return {"extracted_info": response}
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=500, detail=str(e))

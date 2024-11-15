@@ -11,7 +11,7 @@ def llm_generate_response(title: str, body: str):
     prompt = [
         {
             'role': 'system',
-            'content': 'You are an AI assistant specializing in prospect research for a sales team. Your task is to analyze a given company website and produce a concise, structured summary of the company for the sales team.'
+            'content': 'You are an AI assistant specializing in prospect research for a sales team. Your task is to analyze a given company website and produce a concise, structured summary of the company for the sales team. The output should be in html code, just with a div with h and p elements.'
         },
         {
             'role': 'user',
@@ -24,6 +24,8 @@ def llm_generate_response(title: str, body: str):
                 - Recent News/Events: [Include any recent news, significant events, or milestones relevant to the company].
 
                  Aim to provide actionable insights that would help a sales team preparing to reach out to this prospect.
+                Output as:
+                [html code]
             '''
         }
     ]
