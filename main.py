@@ -33,6 +33,7 @@ async def extract_info(request: SalesRequest):
         title, body = scrape_website(request.url)
 
         response = llm_generate_response(title, body)
+        
         return {"extracted_info": response}
     except Exception as e:
         print(e)
