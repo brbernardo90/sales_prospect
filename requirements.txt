@@ -1,3 +1,5 @@
 fastapi[all]
 openai
 python-dotenv
+BeautifulSoup
+requests
