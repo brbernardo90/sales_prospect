@@ -1,16 +1,28 @@
-from typing import Optional
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 
-from fastapi import FastAPI
 from openai_generate import llm_generate_response
+from scrapy import scrape_website
 
 app = FastAPI()
 
+# Request schema
+class SalesRequest(BaseModel):
+    url: str
 
 @app.get("/")
 async def root():
-    response = llm_generate_response("Hello World")
+    response = "Hello World"
     return {"message": response}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Optional[str] = None):
-    return {"item_id": item_id, "q": q}
+
+# Endpoint for extracting candidate information
+@app.post("/sales_prospect")
+async def extract_info(request: SalesRequest):
+    try:
+        title, body = scrape_website(request.url)
+
+        response = llm_generate_response(title, body)
+        return {"extracted_info": title}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
